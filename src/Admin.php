@@ -91,6 +91,11 @@ class Admin
         /** @var Menu $menuModel */
         $menuModel = new $menuClass();
 
+        if ($this->user()->role == 'park')
+        {
+            return $menuModel->query()->where('role', 'park')->get()->toArray();
+        }
+
         return $this->menu = $menuModel->toTree();
     }
 
